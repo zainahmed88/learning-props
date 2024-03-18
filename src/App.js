@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import ListGroup from "./components/ListGroup";
+import Alert from "./components/Alert";
+import Button from "./components/Button";
+import { useState } from "react";
 
 function App() {
+  const [alertShow, setAlertShow] = useState(false);
+  let items = [
+    { key: 0, value: "New York" },
+    { key: 1, value: "San Francisco" },
+    { key: 2, value: "Tokyo" },
+    { key: 3, value: "London" },
+    { key: 4, value: "Paris" },
+  ];
+
+  const handleSelectedItem = (item) => {
+    console.log(item);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <>
+        <ListGroup
+          items={items}
+          heading="Cities"
+          onSelectItem={handleSelectedItem}
+        ></ListGroup>
+        {alertShow && (
+          <Alert
+            onClose={() => {
+              setAlertShow(false);
+            }}
+          />
+        )}
+        <Button
+          color="primary"
+          onClicked={() => {
+            console.log("Clicked");
+            setAlertShow(true);
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          Clicked
+        </Button>
+      </>
     </div>
   );
 }
-
 export default App;
