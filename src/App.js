@@ -4,7 +4,7 @@ import Button from "./components/Button";
 import { useState } from "react";
 
 function App() {
-  const [alertShow, setAlertShow] = useState(false);
+  const [alerts, setAlerts] = useState([]);
   let items = [
     { key: 0, value: "New York" },
     { key: 1, value: "San Francisco" },
@@ -16,6 +16,15 @@ function App() {
   const handleSelectedItem = (item) => {
     console.log(item);
   };
+  let addAlert = () => {
+    setAlerts([...alerts, {}]);
+  };
+
+  let removeAlert = (i) => {
+    let newalerts = [...alerts];
+    newalerts.splice(i, 1);
+    setAlerts(newalerts);
+  };
   return (
     <div className="App">
       <>
@@ -24,21 +33,27 @@ function App() {
           heading="Cities"
           onSelectItem={handleSelectedItem}
         ></ListGroup>
-        {alertShow && (
+
+        {alerts.map((element, index) => (
           <Alert
+            key={index}
+            className="alert alert-warning alert-dismissible fade show"
+            role="alert"
             onClose={() => {
-              setAlertShow(false);
+              removeAlert(index);
+              console.log("Alert removed");
             }}
-          />
-        )}
+          ></Alert>
+        ))}
+
         <Button
           color="primary"
           onClicked={() => {
-            console.log("Clicked");
-            setAlertShow(true);
+            addAlert();
+            console.log("Alert added");
           }}
         >
-          Clicked
+          Add Alert
         </Button>
       </>
     </div>

@@ -2,7 +2,11 @@ import PropTypes from "prop-types";
 function Button(props) {
   return (
     <div>
-      <button className={"btn btn-" + props.color} onClick={props.onClicked}>
+      <button
+        className={"btn btn-" + props.color}
+        onClick={props.onClicked}
+        type="button"
+      >
         {props.children}
       </button>
     </div>
