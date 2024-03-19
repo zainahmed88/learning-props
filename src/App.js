@@ -21,9 +21,9 @@ function App() {
   };
 
   let removeAlert = (i) => {
-    let newalerts = [...alerts];
-    newalerts.splice(i, 1);
-    setAlerts(newalerts);
+    let newAlerts = [...alerts];
+    newAlerts.splice(i, 1);
+    setAlerts(newAlerts);
   };
   return (
     <div className="App">
